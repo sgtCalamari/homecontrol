@@ -1,3 +1,9 @@
+@media (max-width: 400px) {
+  .power > i {
+    left: -20px;
+  }
+}
+
 .device {
   border: 1px solid gray;
   border-radius: 10px;
@@ -22,6 +28,7 @@
   border: 0;
   border-radius: 35px;
   margin: auto;
+  text-align: center;
 }
 
 .power > i {
