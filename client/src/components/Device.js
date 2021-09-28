@@ -38,13 +38,9 @@ class Device extends React.Component {
     const buttonText = isPoweredOn ? 'ON' : 'OFF';
     const buttonClass = isOnline ? (isPoweredOn ? 'on' : 'off') : 'offline'
     return (
-      <div className='device'>
+      <div className='device' onClick={this.clickButton}>
         <p>{this.props.device.name}</p>
-        <button
-          className={buttonClass}
-          disabled={!isOnline}
-          onClick={this.clickButton}
-        >
+        <button className={buttonClass} disabled={!isOnline}>
           {buttonText}
         </button>
       </div>
