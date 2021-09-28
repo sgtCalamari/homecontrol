@@ -37,11 +37,19 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  sortByName(a, b) {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  }
+
   render() {
-    const rooms = this.state.rooms;
-    const devices = this.state.devices;
+    const devices = this.state.devices.sort(this.sortByName);
+    const rooms = this.state.rooms
+      .sort(this.sortByName)
+      .filter(r => devices.map(d => d.roomId).indexOf(r.roomId) !== -1); // remove empty rooms
     return (
-      <div className='App'>
+      <div className='App' style={{backgroundImage: "url('/micro_carbon.png')"}}>
         <header>
           <h1>Home Control</h1>
           <hr/>

@@ -3,28 +3,81 @@
   border-radius: 10px;
   margin: 3px auto;
   padding-bottom: 10px;
+  background-color: #505050;
 }
 
-button {
-  padding: 10px 30px;
-  border-radius: 5px;
-  border-style: solid;
+.power {
+  color: #373737;
+  text-shadow: 0px 1px 1px rbga(250, 250, 250, 0.1);
+  font-size: 24pt;
+  display: block;
+  position: relative;
+  background-color: rgb(83, 87, 93);
+  box-shadow: 0px 3px 0px 0px rgb(34, 34, 34),
+    0px 7px 10px 0px rgb(17, 17, 17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -12px 35px 0px rgba(0, 0, 0, .5);
+  width: 70px;
+  height: 70px;
+  border: 0;
+  border-radius: 35px;
+  margin: auto;
 }
 
-button.on {
-  border-color: #006B14;
-  color: #006B14;
-  background-color: #9EFFB0;
+.power > i {
+  margin-top: 5px;
 }
 
-button.off {
-  border-color: #B81A02;
-  color: #B81A02;
-  background-color: #FFBCB2;
+.power:before {
+  content: '';
+  width: 80px;
+  height: 80px;
+  display: block;
+  z-index: -2;
+  position: absolute;
+  background-color: rgb(26, 27, 29);
+  left: -5px;
+  top: -2px;
+  border-radius: 40px;
+  box-shadow: 0px 1px 0px 0px rgba(250,250,250,0.1),
+    inset 0px 1px 2px rgba(0,0,0,0.5);
 }
 
-button.offline {
-  border-color: #a3a3a3;
-  color: #a3a3a3;
-  background-color: #f0f0f0;
+.power:active {
+  box-shadow: 0px 0px 0px 0px rgb(34,34,34),
+    0px 3px 7px 0px rgb(17,17,17),
+    inset 0px 1px 1px 0px rgba(250, 250, 250, .2),
+    inset 0px -10px 35px 5px rgba(0, 0, 0, .5);
+  background-color: rgb(83,87,93);
+  top: 3px;
 }
+
+.indicator {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  clear: both;
+  position: relative;
+  bottom: -15px;
+  left: 48%;
+  margin-bottom: 20px;
+}
+
+.indicate-off {
+  background-color: rgb(226, 0, 0);
+  box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(226,0,0,0.5);
+  }
+
+.indicate-on {
+  background-color: rgb(135,187,83);
+  box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(135,187,83,0.5);
+  }
+
+.indicate-disabled {
+  background-color: rgb(83, 87, 93);
+  box-shadow: inset 0px 1px 0px 0px rgba(250,250,250,0.5),
+    0px 0px 3px 2px rgba(0,0,0,0.1);
+  }

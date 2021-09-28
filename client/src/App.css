@@ -5,12 +5,15 @@
 .contents {
   display: flex;
   justify-content: center;
+  color: #fff;
 }
 
 header {
   top: 0px;
-  background: #fff;
+  background: #555;
   position: sticky;
+  z-index: 10;
+  color: #fff;
 }
 
 header > h1 {

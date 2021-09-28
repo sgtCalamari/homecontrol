@@ -35,14 +35,10 @@ class Device extends React.Component {
   render() {
     const isOnline = this.state.isOnline;
     const isPoweredOn = this.state.isPoweredOn;
-    const buttonText = isPoweredOn ? 'ON' : 'OFF';
-    const buttonClass = isOnline ? (isPoweredOn ? 'on' : 'off') : 'offline'
     return (
       <div className='device' onClick={this.clickButton}>
         <p>{this.props.device.name}</p>
-        <button className={buttonClass} disabled={!isOnline}>
-          {buttonText}
-        </button>
+        <Button isPoweredOn={isPoweredOn} isOnline={isOnline}/>
       </div>
     );
   }
@@ -69,5 +65,19 @@ class Device extends React.Component {
       .catch(err => console.log(err));
   }
 }
+
+const Button = (props) => {
+  const isOnline = props.isOnline ?? false;
+  const isPoweredOn = props.isPoweredOn ?? false;
+  const spanClass = isOnline
+    ? (isPoweredOn ? 'indicator indicate-on' : 'indicator indicate-off')
+    : 'indicator indicate-disabled';
+  return (
+    <div>
+      <button class='power'><i class="fas fa-power-off"></i></button>
+      <span className={spanClass}></span>
+    </div>
+  );
+};
 
 export default Device;
