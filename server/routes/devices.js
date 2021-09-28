@@ -14,13 +14,27 @@ app.get('/', (req, res) => {
 app.post('/:deviceId/turnOff', (req, res) => {
   axios.post(`https://api.smartthings.com/v1/devices/${req.params.deviceId}/commands`, formatOptions('off'))
     .then(r => res.json(r))
-    .catch(r => res.json(r));
+    .catch(err => res.json(err));
 });
 
 app.post('/:deviceId/turnOn', (req, res) => {
   axios.post(`https://api.smartthings.com/v1/devices/${req.params.deviceId}/commands`, formatOptions('on'))
     .then(r => res.json(r))
-    .catch(r => res.json(r));
+    .catch(err => res.json(err));
+})
+
+app.get('/:deviceId/status', (req, res) => {
+  axios.get(`https://api.smartthings.com/v1/devices/${req.params.deviceId}/status`)
+    .then(r => {
+      if (!r.data) res.json(r);
+      const main = r.data.components.main;
+      const status = {
+        isOnline: main.healthCheck['DeviceWatch-DeviceStatus'].value !== 'offline',
+        isPoweredOn: main.switch.switch.value === 'on'
+      };
+      res.json(status);
+    })
+    .catch(err => res.json(err));
 })
 
 const formatOptions = (command) => {

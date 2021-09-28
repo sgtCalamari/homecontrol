@@ -1,0 +1,29 @@
+.device {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 3px auto;
+  padding-bottom: 10px;
+}
+
+button {
+  border-radius: 5px;
+  border-style: solid;
+}
+
+button.on {
+  border-color: #006B14;
+  color: #006B14;
+  background-color: #9EFFB0;
+}
+
+button.off {
+  border-color: #B81A02;
+  color: #B81A02;
+  background-color: #FFBCB2;
+}
+
+button.offline {
+  border-color: #a3a3a3;
+  color: #a3a3a3;
+  background-color: #f0f0f0;
+}

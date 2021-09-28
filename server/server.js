@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const routes = require('./routes');
 require('dotenv').config(); // exposes process.env.CONFIG_VALUE
 const app = express();
+
+app.use(cors());
 
 app.use('/rooms', routes.rooms);
 app.use('/devices', routes.devices);

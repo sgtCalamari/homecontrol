@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import './App.css';
 
+import Device from './components/Device';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -39,24 +41,20 @@ class App extends React.Component {
     const rooms = this.state.rooms;
     const devices = this.state.devices;
     return (
-      <div className="App">
-        <div>
+      <div className='App'>
+        <header>
           <h1>Home Control</h1>
           <hr/>
-          {rooms.map(r => (
-            <>
-            <h2 key={r.roomId}>{r.name}</h2>
-            <ul>
+        </header>
+        <div className="contents">
+          <div>
+            {rooms.map(r => (<>
+              <h2 key={r.roomId}>{r.name}</h2>
               {devices.filter(d => d.roomId === r.roomId).map(d => (
-                <p key={d.deviceId}>
-                  {d.name}
-                  <button onClick={() => this.switch('turnOff', d.deviceId)}>Off</button>
-                  <button onClick={() => this.switch('turnOn', d.deviceId)}>On</button>
-                </p>
+                <Device key={d.deviceId} device={d} />
               ))}
-            </ul>
-            </>
-          ))}
+            </>))}
+          </div>
         </div>
       </div>
     );
