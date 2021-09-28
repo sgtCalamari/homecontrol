@@ -6,3 +6,14 @@
   display: flex;
   justify-content: center;
 }
+
+header {
+  top: 0px;
+  background: #fff;
+  position: sticky;
+}
+
+header > h1 {
+  margin: auto;
+  padding: 10px 0;
+}
