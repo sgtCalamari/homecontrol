@@ -22,6 +22,7 @@ class Device extends React.Component {
   }
 
   clickButton() {
+    console.log('clicked!');
     const isOnline = this.state.isOnline;
     if (!isOnline) { return; }
     const isPoweredOn = this.state.isPoweredOn;
@@ -77,7 +78,7 @@ const Button = (props) => {
     ? (isPoweredOn ? 'indicator indicate-on' : 'indicator indicate-off')
     : 'indicator indicate-disabled';
   return (
-    <div>
+    <div onClick={props.onClick}>
       <button className='power'><i className="fas fa-power-off"></i></button>
       <span className={spanClass}></span>
     </div>
