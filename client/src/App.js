@@ -56,12 +56,14 @@ class App extends React.Component {
         </header>
         <div className="contents">
           <div>
-            {rooms.map(r => (<>
-              <h2 key={r.roomId}>{r.name}</h2>
-              {devices.filter(d => d.roomId === r.roomId).map(d => (
-                <Device key={d.deviceId} device={d} />
-              ))}
-            </>))}
+            {rooms.map(r => (<div>
+              <h2 className='room-name' key={r.roomId}>{r.name}</h2>
+              <div className='devices'>
+                {devices.filter(d => d.roomId === r.roomId).map(d => (
+                  <Device key={d.deviceId} device={d} />
+                ))}
+              </div>
+            </div>))}
           </div>
         </div>
       </div>

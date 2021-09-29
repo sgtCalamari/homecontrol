@@ -1,11 +1,20 @@
+body {
+  background-color: black;
+}
+
 .App {
   text-align: center;
 }
 
 .contents {
-  display: flex;
-  justify-content: center;
   color: #fff;
+  padding-bottom: 54px;
+}
+
+.devices {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 header {
