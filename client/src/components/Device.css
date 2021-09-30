@@ -30,7 +30,13 @@
 
 .power > i {
   margin-top: 5px;
-  margin-left: -12px;
+}
+
+/* CSS specific to iOS devices */
+@supports (-webkit-touch-callout: none) {
+  .power > i {
+    margin-left: -12px;
+  }
 }
 
 .power:before {
