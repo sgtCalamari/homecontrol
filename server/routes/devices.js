@@ -24,13 +24,22 @@ app.post('/:deviceId/turnOn', (req, res) => {
 })
 
 app.get('/:deviceId/status', (req, res) => {
-  axios.get(`https://api.smartthings.com/v1/devices/${req.params.deviceId}/status`)
+  axios.get(`https://api.smartthings.com/v1/devices/${req.params.deviceId}/components/main/status`)
     .then(r => {
       if (!r.data) res.json(r);
-      const main = r.data.components.main;
+      const main = r.data;
+
+      let now = new Date();
+      let lastSwitchUpdate = new Date(main.switch.switch.timestamp);
+      let timeDiff = Math.abs(lastSwitchUpdate.getTime() - now.getTime());
+      let updatedToday = timeDiff / (1000*60*60*24) < 1;
+
+      let isOnline = updatedToday;
+      let isPoweredOn = main.switch.switch.value === 'on';
+
       const status = {
-        isOnline: main.healthCheck['DeviceWatch-DeviceStatus'].value !== 'offline',
-        isPoweredOn: main.switch.switch.value === 'on'
+        isOnline: isOnline,
+        isPoweredOn: isPoweredOn
       };
       res.json(status);
     })
