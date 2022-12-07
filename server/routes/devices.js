@@ -34,12 +34,13 @@ app.get('/:deviceId/status', (req, res) => {
       let timeDiff = Math.abs(lastSwitchUpdate.getTime() - now.getTime());
       let updatedToday = timeDiff / (1000*60*60*24) < 1;
 
+      let healthCheck;
       if (main.healthCheck) {
-        let healthCheckStatus = main.healthCheck.DeviceWatch-DeviceStatus.value;
-        let healthCheck = healthCheckStatus === 'online';
+        let status = main.healthCheck["DeviceWatch-DeviceStatus"].value;
+        healthCheck = status === 'online';
       }
 
-      let isOnline = healthCheck || updatedToday;
+      let isOnline = healthCheck ?? updatedToday;
       let isPoweredOn = main.switch.switch.value === 'on';
 
       const status = {
