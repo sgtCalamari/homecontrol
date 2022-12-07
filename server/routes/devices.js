@@ -40,8 +40,8 @@ app.get('/:deviceId/status', (req, res) => {
         healthCheck = status === 'online';
       }
 
-      let isOnline = healthCheck ?? updatedToday;
       let isPoweredOn = main.switch.switch.value === 'on';
+      let isOnline = (isPoweredOn && updatedToday) || healthCheck;
 
       const status = {
         isOnline: isOnline,
