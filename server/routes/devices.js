@@ -32,7 +32,7 @@ app.get('/:deviceId/status', (req, res) => {
       let now = new Date();
       let lastSwitchUpdate = new Date(main.switch.switch.timestamp);
       let timeDiff = Math.abs(lastSwitchUpdate.getTime() - now.getTime());
-      let updatedToday = timeDiff / (1000*60*60*24) < 1;
+      let updatedRecently = timeDiff / (1000*60*60*24) < 7;
 
       let healthCheck;
       if (main.healthCheck) {
@@ -41,7 +41,7 @@ app.get('/:deviceId/status', (req, res) => {
       }
 
       let isPoweredOn = main.switch.switch.value === 'on';
-      let isOnline = (isPoweredOn && updatedToday) || healthCheck;
+      let isOnline = isPoweredOn || updatedRecently || healthCheck;
 
       const status = {
         isOnline: isOnline,
